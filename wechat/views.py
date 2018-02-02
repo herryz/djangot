@@ -1,7 +1,7 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import generics
+from rest_framework import permissions
 from rest_framework.views import APIView
 from django.http import Http404
 from django.contrib.auth.models import User
@@ -47,6 +47,20 @@ class WechatDetail(APIView):
         user = self.get_object(pk)
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+# class WechatList(generics.ListCreateAPIView):
+#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+#     queryset = WechatUser.objects.all()
+#     serializer_class = WechatUserSerializer
+#
+#     def perform_create(self, serializer):
+#         serializer.save(owner=self.request.user)
+#
+#
+# class WechatDetail(generics.RetrieveUpdateDestroyAPIView):
+#     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+#     queryset = WechatUser.objects.all()
+#     serializer_class = WechatUserSerializer
 
 
 class UserList(generics.ListAPIView):

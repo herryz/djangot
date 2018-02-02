@@ -39,3 +39,9 @@ class WechatUser(models.Model):
                                   full=True, **options)
         self.highlighted = highlight(self.code, lexer, formatter)
         super(WechatUser, self).save(*args, **kwargs)
+
+
+class Comment(models.Model):
+    email = models.EmailField(max_length=50, default='')
+    content = models.CharField(max_length=100, default='')
+    created = models.DateTimeField(auto_now_add=True)
